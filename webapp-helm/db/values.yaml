@@ -1,0 +1,22 @@
+protocol: TCP
+imagePullPolicy: Always
+namespace: default
+appName: mysql
+
+replicaCount: 1
+
+port: 3306
+
+image:
+  repository: mysql
+  tag: 5.7
+
+service:
+  name: mysql
+  type: ClusterIP
+  protocol: TCP
+
+env:  
+  MYSQL_ROOT_PASSWORD: 'root'
+  MYSQL_DATABASE: 'test'
+  MYSQL_PASSWORD: 'root'

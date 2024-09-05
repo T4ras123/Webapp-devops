@@ -1,0 +1,66 @@
+
+
+services:
+  frontend:
+    build: ./frontend/
+    environment:
+      - REACT_APP_PORT=3000
+    ports:
+      - 80:3000
+    depends_on:
+      - backend
+      - mysql
+    networks:
+      - app
+      
+  nginx:
+    build: ./nginx/
+    ports:
+     - 443:80
+    networks:
+     - app
+
+
+  backend:
+    build: ./backend/
+    restart: always
+    environment:
+      - DB_HOST=mysql
+      - DB_PORT=3306
+      - DB_USER=root
+      - DB_NAME=test
+      - DB_PASS=root
+    ports:
+      - 3001:80
+    depends_on:
+      - mysql
+    links:
+      - "mysql:mysql"
+    networks:
+      - app
+    volumes:
+      - backend_volume:/usr/src/app/static/
+  mysql:
+    image: mysql
+    restart: always
+    expose: [3306]
+    ports:
+      - 3306:3306
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=test 
+      - MYSQL_PASSWORD=root
+
+    volumes:
+      - my_volume:/var/lib/mysql
+      - ./dump.sql:/docker-entrypoint-initdb.d/dump.sql
+    networks:
+      - app
+
+volumes:
+  my_volume:
+  backend_volume:
+
+networks:
+  app:
+    driver: bridge      

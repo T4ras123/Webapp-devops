@@ -1,0 +1,26 @@
+protocol: TCP
+imagePullPolicy: Always
+namespace: default
+appName: backend
+
+replicaCount: 1
+
+port: 80
+
+image:
+  repository: vover173/webapp-docker
+  tag: backend
+  pullPolicy: Always
+
+service:
+  name: backend
+  type: ClusterIP
+  port: 3001
+  protocol: TCP
+
+env:  
+  DB_HOST: mysql-service
+  DB_PORT: "3306"
+  DB_USER: "root"
+  DB_PASS: "root"
+  DB_NAME: "test"

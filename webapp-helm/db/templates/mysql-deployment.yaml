@@ -1,0 +1,36 @@
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mysql-deployment
+  labels:
+    app: {{ .Values.appName}}
+spec:
+  replicas: {{ .Values.replicaCount}}
+  selector:
+    matchLabels:
+      app: {{ .Values.appName}}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.appName}}
+    spec:
+      containers:
+      - name: {{ .Values.appName}}
+        image: "{{ .Values.image.repository}}:{{ .Values.image.tag}}"
+        imagePullPolicy: {{ .Values.imagePullPolicy}}
+        ports: 
+        - containerPort: {{ .Values.port}}
+        env: 
+        - name: MYSQL_ROOT_PASSWORD
+          value: {{ .Values.env.MYSQL_ROOT_PASSWORD}}
+        - name: MYSQL_DATABASE
+          value: {{ .Values.env.MYSQL_DATABASE}} 
+        - name: MYSQL_PASSWORD
+          value: {{ .Values.env.MYSQL_PASSWORD}}
+
+
+
+
+
