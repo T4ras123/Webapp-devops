@@ -9,7 +9,6 @@ This project is a web application with a React frontend, a NestJS backend, and a
 - [Installation](#installation)
 - [Running the Application](#running-the-application)
 
-
 ## Technologies
 
 - **Frontend**: React, Nginx
@@ -31,10 +30,10 @@ Clone the repository:
    cd my-webapp
    ```
 
-## Running the application 
+## Running the application
 
 Run the container
 
-```bash 
+```bash
 docker compose up -d 
 ```
