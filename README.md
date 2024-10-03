@@ -2,6 +2,10 @@
 
 This project is a web application with a React frontend, a NestJS backend, and a MySQL database, all managed and deployed using Docker/K8s/Helm. Reverse proxy is implemented with NGINX.
 
+![alt text](media/Screenshot%20from%202024-10-03%2010-14-58.png)
+
+![alt text](media/Screenshot%20from%202024-10-03%2010-15-11.png)
+
 ## Technologies
 
 - **Frontend**: React, Nginx
